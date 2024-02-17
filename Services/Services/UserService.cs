@@ -26,10 +26,12 @@ namespace Services.Services
             try
             {
                 var user = await _unitOfWork.Users.GetByIdAsync(userDetailRequest.UserId);
-
                 var response = new UserDetailResponse();
-                response.Balance = user.Balance;
-
+                if (user != null)
+                {
+                    response.Success = true;
+                    response.Balance = user.Balance;
+                }
                 return response;
             }
             catch (Exception e)
@@ -42,6 +44,7 @@ namespace Services.Services
                 log.FunctionName = "Service-GetUserDetail";
                 log.DateTime = DateTime.Now;
                 await _unitOfWork.Logs.AddAsync(log);
+                await _unitOfWork.Logs.SaveChangesAsync();
                 return new UserDetailResponse();
             }
 

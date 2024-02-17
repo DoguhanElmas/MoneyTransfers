@@ -9,5 +9,6 @@ namespace Core.Dto.Response
     public class UserDetailResponse
     {
         public decimal Balance { get; set; }
+        public bool Success { get; set; }
     }
 }

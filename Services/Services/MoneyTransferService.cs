@@ -50,6 +50,7 @@ namespace Services.Services
                 log.FunctionName = "Service-GetTransactionById";
                 log.DateTime = DateTime.Now;
                 await _unitOfWork.Logs.AddAsync(log);
+                await _unitOfWork.Logs.SaveChangesAsync();
                 return new TransactionDetailResponse();
             }
         }
@@ -75,6 +76,7 @@ namespace Services.Services
                 log.FunctionName = "Service-GetTransactions";
                 log.DateTime = DateTime.Now;
                 await _unitOfWork.Logs.AddAsync(log);
+                await _unitOfWork.Logs.SaveChangesAsync();
                 return new TransactionDetailResponse();
             }
         }
@@ -165,7 +167,7 @@ namespace Services.Services
                     }
                     else if (receiverUser == null)
                     {
-                        response.Message = "Receiver Undefined";
+                        response.Message = "Receiver Undefined!";
                     }
                     else
                     {
@@ -184,6 +186,7 @@ namespace Services.Services
                 log.FunctionName = "Service-TransferMoney";
                 log.DateTime = DateTime.Now;
                 await _unitOfWork.Logs.AddAsync(log);
+                await _unitOfWork.Logs.SaveChangesAsync();
                 return new MoneyTransferResponse();
             }
         }
